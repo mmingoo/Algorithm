@@ -16,47 +16,33 @@
 '''
 
 import sys
-input = sys.stdin.readline
-n , m = map(int, input().split()) #n : 세로 / m: 가로
-map = [list(map(int, input().split())) for _ in range(n)]
-visited = [[False]*m for _ in range(m)]
-
+input = sys.stdin.readline()
 cnt = 0
 maxv = 0
+n,m = map(int, input.split())
 
-
-dy = [0,1,0,-1]
-dx = [1,0,-1,0]
-
-#1인 지점부터 탐색
+dy = [-1,1,0,0] # 상하
+dx = [0,0,-1,1] # 좌우
 def bfs(y,x):
     rs = 1
     q = [(y,x)]
     while q:
-        ex, ey = q.pop()
+        ey, ex = q.pop()
         for k in range(4):
             ny = ey + dy[k]
             nx = ex + dx[k]
-
-            #사이즈 넘어가는지 확인
-            if 0 <= ny < n and 0 <= nx < m:
-                if map[ny][nx] == 1 and visited == False:
+            if 0 <= ny < n and 0 <=nx < m:
+                if map[ny][nx] == 1 and visited[ny][nx] == False:
                     rs += 1
                     visited[ny][nx] = True
                     q.append((ny,nx))
-    return rs
 
-# 전체를 탐색
-for j in range(n):
-    for i in range(m):
-        if map[j][i] == 1 and visited[j][i] == False:
-            visited[j][i] == True
+map = [list() for _ in range(m)]
+visited = [False * m for _ in range(n)]
 
-            #전체 그림 갯수 +1
+for i in range(n):
+    for j in range(m):
+        if visited[i][j] == False and map[i][j] == 1:
+            visited[i][j] = 0
             cnt += 1
-            #BFS 통해서 그림의 크기를 구해줌
-            maxv = max(maxv, bfs(j,i))
-            #그림 크기를 최댓값으로 구해줌
-
-print(cnt) # 그림 몇개인지
-print(maxv) # 가장 큰 크기가 무엇인지
+            maxv = max(maxv, bfs(i,j))
