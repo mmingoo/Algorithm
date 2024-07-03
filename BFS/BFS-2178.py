@@ -1,5 +1,7 @@
 
 #0628
+#0702
+
 import sys
 from collections import deque
 
@@ -22,6 +24,7 @@ def bfs(a, b):
         for k in range(4):
             ny = y + dy[k]
             nx = x + dx[k]
+
 
             if 0 <= ny < n and 0 <= nx < m:
                 if graph[ny][nx] == 1:

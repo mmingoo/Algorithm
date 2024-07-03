@@ -1,40 +1,25 @@
-import sys
 from collections import deque
-
+import sys
 input = sys.stdin.readline
 
-n,m = map(int, input().split())
-graph = [list(map(int, input().split())) for _ in range(n)]
-visited = [[False]*m for _ in range(n)]
-cnt = 0
-maxv = 0
-dy = [0, 1, 0, -1]
-dx = [1, 0, -1, 0]
+n = int(input())
+v = int(input())
+graph = [[] for _ in range(n+1)]
+visited = [0]*(n+1)
 
-def bfs(y,x):
-    rs = 1
-    q = deque([(y,x)])
-    visited[y][x] = True
+for _ in range(v):
+    a, b = map(int,input().split())
+    graph[a] += [b]
+    graph[b] += [a]
 
-    while q:
-        ey, ex = q.popleft()
+q = deque([1])
+visited[1] = 1
 
-        for k in range(4):
-            ny = ey + dy[k]
-            nx = ex + dx[k]
+while q:
+    c = q.popleft()
+    for nx in graph[c]:
+        if visited[nx] == 0:
+            visited[nx] = 1
+            q.append(nx)
 
-            if 0<= ny < n and 0 <= nx < m:
-                if graph[ny][nx] == 1 and not visited[ny][nx]:
-                    rs+=1
-                    q.append((ny,nx))
-                    visited[ny][nx] = True
-    return rs
-
-for i in range(n):
-    for j in range(m):
-        if graph[i][j] == 1 and not visited[i][j]:
-            cnt += 1
-            maxv = max(maxv, bfs(i,j))
-
-print(cnt)
-print(maxv)
+print(sum(visited)-1)
