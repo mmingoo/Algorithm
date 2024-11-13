@@ -15,7 +15,6 @@ import sys
 input = sys.stdin.readline()
 
 n, m = map(int, input.split())
-
 chk = [False] * (n+1)
 rs = []
 
@@ -28,8 +27,9 @@ def recur(num):
         if chk[i] == False:
             chk[i] = True
             rs.append(i)
+            recur(num + 1)
             chk[i] = False
             rs.pop()
-            recur(num+1)
+
 
 recur(0)
