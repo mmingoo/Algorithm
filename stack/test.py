@@ -1,23 +1,18 @@
 import sys
 input = sys.stdin.readline
-n = int(input())
+str_list = input()
 stack = []
+cnt = 0
+for i in range(len(str_list)):
+    if str_list[i] == '(':
+        stack.append(i)
+    else:
+        if str_list[i-1] == "(" and str_list[i] == ")":
+            stack.pop()
+            cnt += len(stack)
 
-for _ in range(n):
-    flag = False
-    stack = []
-    str_list = list(input().rstrip())
-
-    for char in str_list:
-        if char == '(':
-            stack.append(char)
         else:
             if stack:
+                cnt += 1
                 stack.pop()
-            else:
-                flag = True
-
-    if stack or flag == True:
-       print("NO")
-    else:
-        print("YES")
+print(cnt)
