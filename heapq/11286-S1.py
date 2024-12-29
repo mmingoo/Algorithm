@@ -10,7 +10,6 @@ for _ in range(numbers):
         heapq.heappush(heap, (abs(num), num))
     else:
         try:
-            print(f'heap: {heap}')
             print(heapq.heappop(heap)[1])
         except:
             print(0)
