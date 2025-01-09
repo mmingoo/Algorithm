@@ -1,20 +1,26 @@
-import sys
+import sys, heapq
 
 input = sys.stdin.readline
 
-n, k = map(int, input().split())
-numbers = list(input().rstrip())
-stack = []
+n = int(input())
+time_list = []
+q = []
+cnt = 1
 
-for num in numbers:
-    while stack and stack[-1] < num and k>0:
-        stack.pop()
-        k-=1
-    stack.append(num)
+for _ in range(n):
+    start,end = map(int, input().split())
+    time_list.append([start,end])
 
-# 스택에 최댓값 순서대로 정렬이 됐는데도 k가 0이 아닌 경우
-if k > 0:
-    print(''.join(stack[:-k]))
-else:
-    print(''.join(stack))
+time_list.sort()
+q.append(time_list[0][1])
 
+for i in range(1, n):
+    if q[0] > time_list[i][0]:
+        heapq.heappush(q,time_list[i][1])
+        cnt +=1
+
+    else:
+        heapq.heappop(q)
+        heapq.heappush(q,time_list[i][1])
+
+print(cnt)
