@@ -2,25 +2,32 @@ import sys, heapq
 
 input = sys.stdin.readline
 
-n = int(input())
-time_list = []
-q = []
-cnt = 1
+n,k = map(int,input().split())
+nums = list((input().rstrip()))
+stack = []
 
-for _ in range(n):
-    start,end = map(int, input().split())
-    time_list.append([start,end])
-
-time_list.sort()
-q.append(time_list[0][1])
-
-for i in range(1, n):
-    if q[0] > time_list[i][0]:
-        heapq.heappush(q,time_list[i][1])
-        cnt +=1
-
+for num in nums:
+    print("num: ", num)
+    if not stack:
+        stack.append(num)
+        print("스택에 추가 : ", stack)
     else:
-        heapq.heappop(q)
-        heapq.heappush(q,time_list[i][1])
+        while k>0:
+            # print("num: ",num + "stack 맨 위:"+stack[-1])
+            if num > stack[-1]:
+                stack.pop()
+                stack.append(num)
+                print("스택 pop 후 추가 : ", stack)
+                k -= 1
+                print("k = ", k)
+                break
+            else:
+                stack.append(num)
+                break
+    print("-----------------")
 
-print(cnt)
+print(stack)
+if k != 0:
+    print(''.join(stack[:-k]))
+else:
+    print(''.join(stack[:]))

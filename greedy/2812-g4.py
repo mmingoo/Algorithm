@@ -1,20 +1,37 @@
-import sys
-
-input = sys.stdin.readline
-
-n, k = map(int, input().split())
-numbers = list(input().rstrip())
+chr_list = list(input().rstrip())
+in_tag = False
 stack = []
+write1 = []
 
-for num in numbers:
-    while stack and stack[-1] < num and k>0:
-        stack.pop()
-        k-=1
-    stack.append(num)
+for chr in chr_list:
+    if chr == '<':
+        in_tag = True
+        if stack:
+            for _ in range(len(stack)):
+                write1.append(stack.pop())
 
-# 스택에 최댓값 순서대로 정렬이 됐는데도 k가 0이 아닌 경우
-if k > 0:
-    print(''.join(stack[:-k]))
-else:
-    print(''.join(stack))
+        write1.append(chr)
 
+    elif chr == '>':
+        in_tag = False
+        write1.append(chr)
+
+    elif chr == ' ':
+        if not in_tag:
+            for _ in range(len(stack)):
+                write1.append(stack.pop())
+            write1.append(' ')
+        else:
+            write1.append(' ')
+
+    else:
+        if in_tag:
+            write1.append(chr)
+        else:
+            stack.append(chr)
+
+if stack:
+    for _ in range(len(stack)):
+        write1.append(stack.pop())
+
+print(''.join(write1))
