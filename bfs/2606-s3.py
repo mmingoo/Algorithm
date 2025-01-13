@@ -1,4 +1,4 @@
-
+from collections import deque
 ### dfs ###
 k = int(input())
 n = int(input())
@@ -17,7 +17,22 @@ def dfs(v):
     for nx in graph[v]:
         if visit[nx] == 0:
             dfs(nx)
-dfs(1)
+
+def bfs(v):
+    q = deque([1])
+    visit[1] = 1
+    while q:
+        c = q.popleft()
+        for nx in graph[c]:
+            if visit[nx] == 0:
+                q.append(nx)
+                visit[nx] = 1
+
+
+
+# dfs(1)
+bfs(1)
 print(sum(visit)-1)
+
 
 
