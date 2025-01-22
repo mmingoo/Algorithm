@@ -7,7 +7,7 @@ result = 0
 while start <= end:
     total = 0
     mid = (start + end) // 2
-    
+
     for i in money:
         if i < mid:
             total += i
