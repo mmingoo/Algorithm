@@ -30,8 +30,7 @@ def bfs(v):
 
 
 
-# dfs(1)
-bfs(1)
+bfs()
 print(sum(visit)-1)
 
 
