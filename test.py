@@ -1,19 +1,20 @@
-import sys
+n = int(input())
+loss = list(map(int,input().split()))
+total_loss = []
 
-N = int(sys.stdin.readline().strip())
-balls = str(sys.stdin.readline().strip())
-cnt = []
+if len(loss) % 2 == 1:
+    total_loss.append(max(loss))
+    del loss[loss.index(max(loss))]
 
-# 우측으로 레드 모으기
-red_right_explore = balls.rstrip('R')
-cnt.append(red_right_explore.count('R'))
 
-red_left_explore = balls.lstrip('R')
-cnt.append(red_left_explore.count('R'))
+for _ in range(n//2):
+    min_num = min(loss)
+    max_num = max(loss)
 
-blue_right_explore = balls.rstrip('B')
-cnt.append(blue_right_explore.count('B'))
 
-blue_left_explore = balls.rstrip('B')
-cnt.append(blue_left_explore.count('B'))
-print(min(cnt))
+    del loss[loss.index(min(loss))]
+    del loss[loss.index(max(loss))]
+
+    total_loss.append(min_num+max_num)
+
+print(max(total_loss))
