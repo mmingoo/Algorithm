@@ -1,12 +1,13 @@
-n = int(input())
-stack = []
-arr = [int(input())for i in range(n)]
-cnt = 0
+import sys
+input = sys.stdin.readline
+k,l = map(int,input().split())
+arr = []
+for _ in range(l):
+    num = int(input())
 
-for i in arr:
-    while stack and stack[-1] <= i:
-        stack.pop()
+    if num in arr:
+        arr.remove(num)
+    arr.append(num)
 
-    cnt += len(stack)
-    stack.append(i)
-print(cnt)
+for i in range(min(len(arr),k)):
+    print(arr[i])

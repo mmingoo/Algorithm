@@ -1,12 +1,13 @@
 n = int(input())
-stack = []
-arr = [int(input())for i in range(n)]
-cnt = 0
+dict = {}
 
-for i in arr:
-    while stack and stack[-1] <= i:
-        stack.pop()
+for _ in range(n):
+    name, status = input().split()
+    dict[name] = status
 
-    cnt += len(stack)
-    stack.append(i)
-print(cnt)
+    if status == "leave":
+        del dict[name]
+
+names = sorted(dict.keys(), reverse=True)
+for name in names:
+    print(name)
