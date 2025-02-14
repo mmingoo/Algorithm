@@ -1,10 +1,21 @@
 n = int(input())
-arr = list(map(int,input().split()))
-answer = [-1] * n
-st = [0]
+arr = [0]+list(map(int,input().split()))
+answer = [0] * (n+1)
+stack = []
 
-for i in range(1, n):
-    while st and arr[i] > arr[st[-1]] :
-        answer[st.pop()] = arr[i]
-    st.append(i)
-print(*answer)
+for i in range(1,n+1):
+    while stack:
+        # stack 탑보다 현재가 높다면
+        if arr[i] > stack[-1][0]:
+            # stack 탑 제거  루프 끝나면 현재 원소 추가
+            stack.pop()
+
+        # stack 탑보다 현재가 낮다면
+        else:
+            answer[i] = (stack[-1][1])
+            break
+    stack.append((arr[i],i))
+
+
+for i in range(1,n+1):
+    print(answer[i])
