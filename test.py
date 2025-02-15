@@ -1,13 +1,19 @@
 import sys
-input = sys.stdin.readline
-k,l = map(int,input().split())
-arr = []
-for _ in range(l):
-    num = int(input())
+n = int(sys.stdin.readline())
+firstCar = {}
+out = []
+cnt = 0
 
-    if num in arr:
-        arr.remove(num)
-    arr.append(num)
+for i in range(n):
+    firstCar[str(sys.stdin.readline().rstrip("\n"))] = i
 
-for i in range(min(len(arr),k)):
-    print(arr[i])
+for _ in range(n):
+    out.append(str(sys.stdin.readline().rstrip("\n")))
+
+for j in range(n - 1):
+    for k in range(j + 1, n):
+        # 제일 먼저 나간 차의 들어간 순번 > 그 다음으로 나간 차의 들어간 순번
+        if firstCar[out[j]] > firstCar[out[k]]:
+            cnt += 1
+            break
+print(cnt)
