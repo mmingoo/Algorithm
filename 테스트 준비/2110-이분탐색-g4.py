@@ -39,3 +39,4 @@ while start <= end:
         end = mid - 1  # 더 작은 거리 탐색
 
 print(result)
+
