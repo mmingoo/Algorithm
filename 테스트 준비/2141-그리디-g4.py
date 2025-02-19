@@ -16,6 +16,7 @@ info.sort()
 
 for i in range(len(info)):
     record += info[i][1]
+
     if record >= total / 2:
         print(info[i][0])
         break
