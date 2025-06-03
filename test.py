@@ -1,17 +1,28 @@
-answer = 0
-prono = ['aya', 'ye', 'woo', 'ma']
-babbling = ["aya", "yee", "u", "maa", "wyeoo"]
-for i in babbling:
-    for j in prono:
-        if j + j in i:  # 같은 발음이 연속되는지 체크 (j+j 대신 j*2 사용)
-            print(j * 2)
-            break
+def solution(genres, plays):
+    dict = {}
+    lst = []
+    result = []
+    for i in range(len(genres)):
+        if genres[i] in dict:
+            dict[genres[i]] += plays[i]
         else:
-            i = i.replace(j, "").strip()
+            dict[genres[i]] = plays[i]
+    itmes = list(dict.items())
+    for key, value in itmes:
+        lst.append((value, key))
 
-    if i:  # 문자열이 남아있으면
-        continue
-    else:  # 문자열이 완전히 비어있으면
-          # 디버깅용 출력
-        answer += 1
-print(answer)
+    lst.sort(reverse=True)
+
+    for v, k in lst:
+        arr = []
+
+        for i in range(len(plays)):
+            if genres[i] == k:
+                arr.append(([plays[i]], i))
+        arr.sort(key = lambda x : (-x[0],x[1]))
+
+        for i in range(len(arr)):
+            if i < 2:
+                result.append([i][1])
+
+    return result

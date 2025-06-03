@@ -5,12 +5,12 @@ stack = []
 
 for i in range(1,n+1):
     while stack:
-        # stack 탑보다 현재가 높다면
+        # stack_queue 탑보다 현재가 높다면
         if arr[i] > stack[-1][0]:
-            # stack 탑 제거  루프 끝나면 현재 원소 추가
+            # stack_queue 탑 제거  루프 끝나면 현재 원소 추가
             stack.pop()
 
-        # stack 탑보다 현재가 낮다면
+        # stack_queue 탑보다 현재가 낮다면
         else:
             answer[i] = (stack[-1][1])
             break

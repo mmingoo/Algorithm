@@ -46,7 +46,7 @@ def bfs(start_y, start_x):
 
             if 0 <= ny < s and 0 <= nx < g:
                 if location[ny][nx] == 1 and not visit[ny][nx]:
-                    queue.append((ny, nx))  # DFS와 다른 부분 2: stack 대신 queue 사용
+                    queue.append((ny, nx))  # DFS와 다른 부분 2: stack_queue 대신 queue 사용
                     visit[ny][nx] = 1
 
     return count
