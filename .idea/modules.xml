@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Algorithm.iml" filepath="$PROJECT_DIR$/.idea/Algorithm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm_java/Algorithm_java.iml" filepath="$PROJECT_DIR$/Algorithm_java/Algorithm_java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm_python/Algorithm_python.iml" filepath="$PROJECT_DIR$/Algorithm_python/Algorithm_python.iml" />
     </modules>
   </component>
 </project>
