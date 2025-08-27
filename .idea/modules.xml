@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Algorithm.iml" filepath="$PROJECT_DIR$/.idea/Algorithm.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Algorithm_java/Algorithm_java.iml" filepath="$PROJECT_DIR$/Algorithm_java/Algorithm_java.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Algorithm_python/Algorithm_python.iml" filepath="$PROJECT_DIR$/Algorithm_python/Algorithm_python.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm.iml" filepath="$PROJECT_DIR$/Algorithm.iml" />
     </modules>
   </component>
 </project>
